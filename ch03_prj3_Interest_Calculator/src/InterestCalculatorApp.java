@@ -1,3 +1,6 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class InterestCalculatorApp {
@@ -11,8 +14,19 @@ public class InterestCalculatorApp {
 	
 	while (choice.equalsIgnoreCase("y")) {
 		
-		
-	
+	System.out.print("Enter loan amount: ");
+	BigDecimal loan = sc.nextBigDecimal();
+    
+    System.out.print("Enter the interest: ");
+    BigDecimal interest = sc.nextBigDecimal();
+    System.out.println();
+    
+    NumberFormat currency = NumberFormat.getCurrencyInstance();
+    NumberFormat percent = NumberFormat.getPercentInstance();
+    
+    System.out.println("Loan amount: "+currency.format(loan));
+    interest = 
+    System.out.println("Interest amount: "+percent.format(interest));
 		
 	
 	
