@@ -11,38 +11,46 @@ public class FactorialCalculatorApp {
 		while (choice.equalsIgnoreCase("y")) {
 
 			System.out.print("Enter an Integer that's greater than 0 and less than 10: ");
-			int number = sc.nextInt();
+			int nbr = sc.nextInt();
 			System.out.println();
 			
-			if (number > 0 && number <= 1) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1) +".");
-				System.out.println();
-			} else if (number > 1 && number <= 2) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1*2) +".");
-				System.out.println();
-			} else if (number > 2 && number <= 3) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3) +".");
-				System.out.println();
-			} else if (number > 3 && number <= 4) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4) +".");
-				System.out.println();
-			} else if (number > 4 && number <= 5) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5) +".");
-				System.out.println();
-			} else if (number > 5 && number <= 6) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5*6) +".");
-				System.out.println();
-			} else if (number > 6 && number <= 7) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5*6*7) +".");
-				System.out.println();
-			} else if (number > 7 && number <= 8) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5*6*7*8) +".");
-				System.out.println();
-			} else if (number > 8 && number <= 9) {
-				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5*6*7*8*9) +".");
-				System.out.println();
-			} else 	
+			long factorial = 1;
+			for (int i=1; i<=nbr; i++) {
+				factorial *= i; //remember, same as fact = fact*i
+				
+			}
+			System.out.println("The factorial of "+nbr +" is " +factorial);
 			
+			
+//			if (number > 0 && number <= 1) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1) +".");
+//				System.out.println();
+//			} else if (number > 1 && number <= 2) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1*2) +".");
+//				System.out.println();
+//			} else if (number > 2 && number <= 3) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3) +".");
+//				System.out.println();
+//			} else if (number > 3 && number <= 4) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4) +".");
+//				System.out.println();
+//			} else if (number > 4 && number <= 5) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5) +".");
+//				System.out.println();
+//			} else if (number > 5 && number <= 6) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5*6) +".");
+//				System.out.println();
+//			} else if (number > 6 && number <= 7) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5*6*7) +".");
+//				System.out.println();
+//			} else if (number > 7 && number <= 8) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5*6*7*8) +".");
+//				System.out.println();
+//			} else if (number > 8 && number <= 9) {
+//				System.out.println("The factorial of "+number+" "+ "is "+ (1*2*3*4*5*6*7*8*9) +".");
+//				System.out.println();
+//			} else 	
+//			
 			
 
 			System.out.println();

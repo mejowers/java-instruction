@@ -18,14 +18,14 @@ public class TipCalculatorApp {
 		while (choice.equalsIgnoreCase("y")) {
 
 			System.out.print("Cost of meal: ");
-			double cost = sc.nextDouble();
+			BigDecimal cost = sc.nextBigDecimal();
 			System.out.println();
 			
 			for (double rate = 15; rate <30; rate += 5) {
 				System.out.println(percent.format(rate/100));
 				BigDecimal rate1 = new BigDecimal(rate/100)
 						.setScale(2, RoundingMode.HALF_UP);
-				System.out.println("Tip Amount:     "+currency.format(cost*(rate/100)));
+				System.out.println("Tip Amount:     "+currency.format(cost.multipy(rate1)));
 				System.out.println("Total Amount:   "+currency.format(cost+(cost*(rate/100))));
 				System.out.println();
 				
