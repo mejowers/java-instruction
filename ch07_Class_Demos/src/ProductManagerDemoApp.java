@@ -13,23 +13,44 @@ public class ProductManagerDemoApp {
 		p1.setCode("Java");
 		p1.setDescription("Murach's Java Programming");
 		p1.setPrice(57.5);
-		printProduct(p1);
+		
 		System.out.println();
 		
 		
 		
 		//fully loaded constructor
 		Product p2 = new Product("andr", "Murach's Android Programming", 59.50);
-		printProduct(p2);
-		System.out.println();
+		
+		
 	
 		
-				
+		Product p3 = new Product("andr", "Murach's Android Programming", 59.50);
+		Product p4 = p1;
+		p4.setPrice(111.11);
+		
+		
+//		printProduct(p1);
+//		System.out.println("====== p1 ======");
+//		printProduct(p2);
+//		System.out.println("====== p2 ======");
+//		printProduct(p3);
+//		System.out.println("====== p3 ======");
+//		printProduct(p4);
+//		System.out.println("====== p4 ======");
+//		System.out.println();
+		
+		System.out.println(p1);
+		
+		if (p2==p3) {
+			System.out.println("same!");
+		
+		}
 		
 		
 		System.out.println();
 		System.out.println("Good Bye.");
 	}
+	
 	
 	private static void printProduct(Product p) {
 		System.out.println("Product Detail:");
@@ -37,5 +58,16 @@ public class ProductManagerDemoApp {
 		System.out.println("Description: "+p.getDescription());
 		System.out.println("Price: "+p.getPrice());	
 	}
+
+
+//	@Override
+//	public String toString() {
+//		return "ProductManagerDemoApp [getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+//				+ super.toString() + "]";
+//	}
+
+	
+	
+	
 
 }
