@@ -6,8 +6,8 @@ public class Console {
 
     public static String getString(String prompt) {
         System.out.print(prompt);
-        String s = sc.next();  // read user entry
-        sc.nextLine();  // discard any other data entered on the line
+        String s = sc.nextLine();  // read user entry
+//        sc.nextLine();  // discard any other data entered on the line
         return s;
     }
 
