@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import com.util.Console;
+
 public class GradeConverterApp {
 
 	public static void main(String[] args) {
@@ -11,31 +13,21 @@ public class GradeConverterApp {
 		String choice = "y";
 		while (choice.equalsIgnoreCase("y")) {
 
-			int numGrade = Console.getInt("Enter a numerical grade: ");
+			int numGrade = Console.getInt("Numeric Grade?", -1, 101);
+			Grade g = new Grade(numGrade);
 
-			String ltrGrade = "F";
-			if(numGrade>=88){
-				ltrGrade = "A";
-			}else if(numGrade>=80){
-				ltrGrade = "B";
-			}else if(numGrade>=68){
-				ltrGrade = "C";
-			}else if(numGrade>=60){
-				ltrGrade = "D";
-			} 
-			
-			System.out.println("Letter grade: "+ltrGrade);
-			System.out.println();
-			
+			System.out.println("Letter Grade: " + g.getLetter());
 
-			System.out.print("Continue? (y/n)");
-			choice = sc.next();
 			System.out.println();
+
+
+			choice = Console.getString("Continue (y/n)", "y", "n");
+
 		}
 		sc.close();
+		System.out.println();
 		System.out.println("Good Bye!");
 
 	}
-
 
 }

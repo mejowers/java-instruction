@@ -2,18 +2,19 @@
 public class Grade {
 	
 	private int numGrade;
-	private String ltrGrade;
 	
 	
-	public Grade(int numGrade, String ltrGrade) {
+	
+	public Grade(int numGrade) {
 		super();
 		this.numGrade = numGrade;
-		this.ltrGrade = ltrGrade;
+		
 	}
 
 
 	public Grade() {
 		super();
+		numGrade = 0;
 	}
 
 
@@ -25,26 +26,23 @@ public class Grade {
 	public void setNumGrade(int numGrade) {
 		this.numGrade = numGrade;
 	}
-
-
-	public String getLtrGrade() {
-		return ltrGrade;
+	
+	public String getLetter() {
+		String letterGrade = "F";
+		
+		if(numGrade >=88)
+			letterGrade ="A";
+		else if(numGrade >=80)
+			letterGrade ="B";
+		else if(numGrade >=67)
+			letterGrade ="C";
+		else if(numGrade >=88)
+			letterGrade ="D";
+		
+		return letterGrade;
+		
 	}
 
 
-	public void setLtrGrade(String ltrGrade) {
-		this.ltrGrade = ltrGrade;
-	}
-
-
-//	@Override
-//	public String toString() {
-//		return "Grade [numGrade=" + numGrade + ", ltrGrade=" + ltrGrade + "]";
-//	}
-	
-	
-	
-	
-	
 
 }
