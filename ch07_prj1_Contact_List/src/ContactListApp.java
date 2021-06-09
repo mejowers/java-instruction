@@ -32,7 +32,7 @@ public class ContactListApp {
 			choice = sc.next();
 
 		}
-
+		sc.close();
 		System.out.println();
 		System.out.println("Good Bye!");
 	}
