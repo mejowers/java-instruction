@@ -15,7 +15,7 @@ public class BmdbConsoleApp {
 		
 		Movie m = new Movie(id, title, rating, year, director);
 		
-		System.out.println("Product Summary: "+m);
+		System.out.println("Movie Summary: "+m);
 		System.out.println();
 
 	}
