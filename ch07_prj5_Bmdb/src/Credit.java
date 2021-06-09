@@ -1,11 +1,11 @@
 
 public class Credit {
-	
+	//instance variables
 	private int id;
 	private int actorId;
 	private int movieId;
 	
-	
+	//constructors
 	public Credit(int id, int actorId, int movieId) {
 		super();
 		this.id = id;
@@ -18,7 +18,7 @@ public class Credit {
 		super();
 	}
 
-
+	// setters and getters
 	public int getId() {
 		return id;
 	}
