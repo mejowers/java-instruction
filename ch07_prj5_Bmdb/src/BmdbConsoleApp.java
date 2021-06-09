@@ -6,10 +6,10 @@ public class BmdbConsoleApp {
 		System.out.println();
 		
 		int id = Console.getInt("Id? ");
-		String title = Console.getString("Title? ");
+		String title = Console.getLine("Title? ");
 		String rating = Console.getString("Rating? ");
 		int year = Console.getInt("Year? ", 1800, 9999);
-		String director = Console.getString("Director? ");
+		String director = Console.getLine("Director? ");
 		System.out.println();
 		
 		
