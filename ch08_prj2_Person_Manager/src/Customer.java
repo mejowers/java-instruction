@@ -22,8 +22,7 @@ public class Customer extends Person{
 
 	@Override
 	public String toString() {
-		return super.toString() + "Name: "+ getFirstName() +" "+ getLastName()+"/n"
-			+"Customer Number: "+customerNumber;
+		return super.toString() +"\n"+"Customer Number: "+customerNumber;
 		 
 	}
 	

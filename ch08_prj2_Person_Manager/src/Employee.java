@@ -22,8 +22,7 @@ public class Employee extends Person {
 
 	@Override
 	public String toString() {
-		return super.toString() + "Name: "+ getFirstName() +" "+ getLastName()+"/n"
-				+"SSN: "+"xxx-xx-"+getSsn();
+		return super.toString() + "\n"+"SSN: "+"xxx-xx-"+getSsn();
 	}
 	
 	
