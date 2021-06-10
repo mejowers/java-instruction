@@ -15,8 +15,8 @@ public class ProductManagerApp {
 	    System.out.println("p toString: "+p);
 	    
 //	    // p. 281 equals method
-//	    Product p1 = new Product("andr", "Murach's Adroide", 57.99);
-//	    Product p2 = new Product("andr", "Murach's Adroide", 57.99);
+//	    Product p1 = new Product("andr", "Murach's Adroid", 57.99);
+//	    Product p2 = new Product("andr", "Murach's Adroid", 57.99);
 //	    
 //	    if (p1.equals(p2)) {
 //	    	System.out.println("Same book!");
