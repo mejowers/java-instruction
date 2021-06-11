@@ -1,4 +1,4 @@
-public class Employee {
+public class Employee implements Displayable, DepartmentConstants {
 
     private int department;
     private String firstName;
@@ -8,5 +8,10 @@ public class Employee {
         this.department = department;
         this.lastName = lastName;
         this.firstName = firstName;
+    }
+    
+    public String getDisplayText() {
+    	return ("Name: "+firstName+" "+lastName+"," +(int)department);
+    	
     }
 }
