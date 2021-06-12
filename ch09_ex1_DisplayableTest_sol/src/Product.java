@@ -46,9 +46,9 @@ public class Product implements Displayable {
         NumberFormat currency = NumberFormat.getCurrencyInstance();
         return currency.format(price);
     }
-    
-    public String getDisplayText() {
-		return description;
-    	
+
+    @Override
+    public String toString() {
+        return getDescription();
     }
 }
