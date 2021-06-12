@@ -11,7 +11,7 @@ public class Employee implements Displayable, DepartmentConstants {
     }
     
     public String getDisplayText() {
-    	return ("Name: "+firstName+" "+lastName+"," +(int)department);
+    	return ;
     	
     }
 }
