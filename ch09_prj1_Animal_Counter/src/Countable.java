@@ -1,5 +1,5 @@
 
-public interface Counter {
+public interface Countable {
 	
 	void incrementCount();
 	
