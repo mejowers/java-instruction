@@ -8,16 +8,13 @@ public class Animal implements Counter {
 		this.count = count;
 	}
 	
-
 	public Animal() {
 		super();
 	}
 
-
 	public void setCount(int count) {
 		this.count = count;
 	}
-
 
 	@Override
 	public void incrementCount() {
