@@ -22,7 +22,7 @@ public class Sheep extends Animal implements Cloneable {
 
 	@Override
 	public String getCountString() {
-		return "Counting "+name+"..."+"\n" + getCount() + name;
+		return "Counting sheep..."+"\n" + getCount() + name;
 	}
 	
 	
