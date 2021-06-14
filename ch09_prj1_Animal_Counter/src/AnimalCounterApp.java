@@ -6,17 +6,18 @@ public class AnimalCounterApp {
 		System.out.println();
 	
 		
-		public static void count(Countable c, int maxCount) {
-			c=Alligators;
-			maxCount=3;
-			count=0;
+		 
+			
 			for (int count = 0, count <= maxCount, count++) {
 				return System.out.println(+Alligator)
 			}
-		}	
+			
 		System.out.println("Good Bye!");
 		
 
 	}
-
+	public static void count(Countable c, int maxCount) {
+		maxCount = 3;
+		System.out.println(getString.Alligator);
+	}
 }

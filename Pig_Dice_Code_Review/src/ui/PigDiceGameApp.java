@@ -1,3 +1,4 @@
+package ui;
 import java.util.Random;
 
 import com.util.Console;
@@ -11,15 +12,17 @@ public class PigDiceGameApp {
 		String choice = "y";
 		choice = Console.getLine("Are you ready? (y/n): ");
 
+		
+		int count = 0;
+		int num = 0;
 		while (choice.equalsIgnoreCase("y")) {
 			int roll = RollDie();
 			if (roll != 1) {
-				int count = 0;
-				int num = 0;
+				
 				System.out.println("Pig: " + roll);
 				num = num + roll;
 				count++;
-			} else roll = 1 {
+			} else if (roll == 1) {
 				System.out.println("Sum: " + num + "\n" + 
 									"Total rolls: " + count);
 			}
