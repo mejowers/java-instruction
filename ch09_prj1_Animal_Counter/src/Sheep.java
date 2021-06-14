@@ -3,15 +3,16 @@ public class Sheep extends Animal implements Cloneable {
 	
 	private String name;
 
-	public Sheep(int count, String name) {
-		super(count);
+	public Sheep(String name) {
+		super();
 		this.name = name;
 	}
-
-	public Sheep(int count) {
-		super(count);
+	
+	public Sheep() {
+		super();
 	}
 
+	
 	public String getName() {
 		return name;
 	}
@@ -22,7 +23,7 @@ public class Sheep extends Animal implements Cloneable {
 
 	@Override
 	public String getCountString() {
-		return "Counting sheep..."+"\n" + getCount() +" "+ name;
+		return getCount() +" "+ name;
 	}
 
 	@Override
