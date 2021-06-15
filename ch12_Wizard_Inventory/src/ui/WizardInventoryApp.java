@@ -27,19 +27,29 @@ public class WizardInventoryApp {
 	
 	String choice="y";
 	while (choice.equalsIgnoreCase("y")) {
+		System.out.println();
 		String command = Console.getString("Command: ");
+		System.out.println();
 				if (command.equalsIgnoreCase("show")) {
-					System.out.println(inventory);
+					for (int i=0; i<inventory.size(); i++) {
+						System.out.println((i+1)+". "+inventory.get(i));
+					}
 				} else if (command.equalsIgnoreCase("grab")) {
-					String name = Console.getString("Name: ");
+					String name = Console.getLine("Name: ");
 					inventory.add(name);
+					System.out.println(name+" was added to inventory.");
+				}else if (command.equalsIgnoreCase("edit")) {
+					int number = Console.getInt("Number: ");
+					String uName = Console.getLine("Updated name: ");
+					System.out.println("Item number "+number+" was updated.");
+							inventory.set((number-1), uName);
+				}else if (command.equalsIgnoreCase("drop")) {
+					int number = Console.getInt("Number: ");
+					inventory.remove(number-1);
+					String name = inventory.get(number-1);
+					System.out.println(name+" was dropped from inventory.");
 				}
-		
-		
-		
-	
-	
-	}
+			}
 	System.out.println("Good Bye");
 
 	}
