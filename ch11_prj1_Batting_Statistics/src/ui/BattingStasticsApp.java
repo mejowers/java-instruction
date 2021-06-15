@@ -24,7 +24,7 @@ public class BattingStasticsApp {
 		 int basesEarned=0;
 		 
 		 int[] atBatResults = new int[atBatNbr];
-		 
+		  
 		 for (int i=0; i<atBatNbr; i++) {
 			 int result = Console.getInt("Result for at-bat "+(i+1)+": ", 0, 4);
 			 atBatResults[i] = result;
