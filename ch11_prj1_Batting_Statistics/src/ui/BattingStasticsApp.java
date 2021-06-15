@@ -22,6 +22,9 @@ public class BattingStasticsApp {
 		 }
 		 for (int ab: atBatResult) {
 			 // if ab > 0 add 1 to abgz
+			 if (ab>0) {
+				 (atgz+1)
+			 } else continue;
 		 }
 		 System.out.println();
 		 
