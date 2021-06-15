@@ -1,5 +1,8 @@
 package ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.util.Console;
 
 public class WizardInventoryApp {
@@ -16,18 +19,25 @@ public class WizardInventoryApp {
 			+ "exit - Exit the program"); 
 	System.out.println();
 	
+	List<String> inventory = new ArrayList<>();
+	inventory.add("wooden staff");
+	inventory.add("wizard hat");
+	inventory.add("cloth shoes");
 	
 	
-	String choice="exit";
-	while (choice != "exit") {
+	String choice="y";
+	while (choice.equalsIgnoreCase("y")) {
+		String command = Console.getString("Command: ");
+				if (command.equalsIgnoreCase("show")) {
+					System.out.println(inventory);
+				} else if (command.equalsIgnoreCase("grab")) {
+					String name = Console.getString("Name: ");
+					inventory.add(name);
+				}
 		
 		
 		
-		
-		
-		
-		
-	choice=Console.getString("Command: ");
+	
 	
 	}
 	System.out.println("Good Bye");
