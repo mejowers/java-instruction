@@ -18,7 +18,7 @@ public class FactorialCalculatorAppRedo {
 			}
 			System.out.println("The factorial for " + nbr + " is " + factorial + "!");
 
-			Console.getLine("Continue? (y/n)");
+			choice = Console.getString("Continue? (y/n)", "y", "n");
 
 		}
 		System.out.println();

@@ -64,18 +64,26 @@ public class Console {
         }
         return i;
     }
+    /**
+     * This method will return a valid integer within 
+     * the min max range (inclusive).
+     * @param prompt
+     * @param min
+     * @param max
+     * @return
+     */
 
     public static int getInt(String prompt, int min, int max) {
         int i = 0;
         boolean isValid = false;
         while (!isValid) {
             i = getInt(prompt);
-            if (i <= min) {
+            if (i < min) {
                 System.out.println(
-                        "Error! Number must be greater than " + min + ".");
-            } else if (i >= max) {
+                        "Error! Number must be greater than or eual to " + min + ".");
+            } else if (i > max) {
                 System.out.println(
-                        "Error! Number must be less than " + max + ".");
+                        "Error! Number must be less than or equal to " + max + ".");
             } else {
                 isValid = true;
             }
