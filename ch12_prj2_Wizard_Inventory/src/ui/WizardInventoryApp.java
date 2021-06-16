@@ -43,14 +43,22 @@ public class WizardInventoryApp {
 				}
 			} else if (command.equalsIgnoreCase("edit")) {
 				int number = Console.getInt("Number: ");
+				if (number > inventory.size()) {
+					System.out.println("Number Invalid.");
+				} else {
 				String uName = Console.getLine("Updated name: ");
 				System.out.println("Item number " + number + " was updated.");
 				inventory.set((number - 1), uName);
+				}
 			} else if (command.equalsIgnoreCase("drop")) {
 				int index = Console.getInt("Number: ");
+				if (index > inventory.size()) {
+					System.out.println("Number Invalid.");
+				} else {
 				String name = inventory.get(index - 1);
 				System.out.println(name + " was dropped from inventory.");
 				inventory.remove(index - 1);
+				}
 			} else if (command.equalsIgnoreCase("exit")) {
 				break;
 			}
