@@ -24,8 +24,8 @@ public class WizardInventoryApp {
 		inventory.add("wizard hat");
 		inventory.add("cloth shoes");
 
-		String choice = "y";
-		while (choice.equalsIgnoreCase("y")) {
+		String choice = "";
+		while (!choice.equalsIgnoreCase("exit")) {
 			System.out.println();
 			String command = Console.getString("Command: ");
 			System.out.println();
@@ -43,7 +43,7 @@ public class WizardInventoryApp {
 				}
 			} else if (command.equalsIgnoreCase("edit")) {
 				int number = Console.getInt("Number: ");
-				if (number > inventory.size()) {
+				if (number >inventory.size()) {
 					System.out.println("Number Invalid.");
 				} else {
 				String uName = Console.getLine("Updated name: ");
