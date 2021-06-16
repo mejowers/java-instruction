@@ -34,9 +34,13 @@ public class WizardInventoryApp {
 					System.out.println((i + 1) + ". " + inventory.get(i));
 				}
 			} else if (command.equalsIgnoreCase("grab")) {
+				if (inventory.size()>=4) {
+					System.out.println("You can't hold anymore inventory. Drop an item first.");
+				}else {
 				String name = Console.getLine("Name: ");
 				inventory.add(name);
 				System.out.println(name + " was added to inventory.");
+				}
 			} else if (command.equalsIgnoreCase("edit")) {
 				int number = Console.getInt("Number: ");
 				String uName = Console.getLine("Updated name: ");
