@@ -17,6 +17,7 @@ public class EmailCreatorApp {
 			    "Hi {first_name},\n\n" +
 			    "We've got some great deals for you. Check our website!";
 
+		
 
 		
 		
