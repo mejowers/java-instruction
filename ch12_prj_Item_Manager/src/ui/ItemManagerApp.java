@@ -10,6 +10,8 @@ import business.Item;
 
 public class ItemManagerApp {
 	private static List<Item> items;
+	private static final String ITEM_NOT_FOUND_MSG = "Item not found: ";
+	
 
 	public static void main(String[] args) {
 		// initialize items list and add some office items
@@ -29,7 +31,7 @@ public class ItemManagerApp {
 			displayMenu();
 			command = Console.getInt("Command: ");
 			System.out.println();
-			
+
 			switch (command) {
 			case 1:
 				System.out.println("Items:");
@@ -43,8 +45,13 @@ public class ItemManagerApp {
 				System.out.println("=================");
 				int number = Console.getInt("Item number to retrieve: ");
 				Item item = getItem(number);
-				System.out.println();
-				System.out.println("* " +item+" *");
+				if (item != null) {
+					System.out.println();
+					System.out.println("* " + item + " *");
+				} else {
+					System.out.println();
+					System.out.println("ITEM_NOT_FOUND_MSG" + number);
+				}
 				break;
 			case 3:
 				// add an item
@@ -73,9 +80,14 @@ public class ItemManagerApp {
 				System.out.println("=================");
 				number = Console.getInt("Number to update: ");
 				Item i = getItem(number);
-				description = Console.getLine("New description: ");
-				i.setDescription(description);
-				System.out.println("Description for "+number+" has been changed to "+description);
+				if (i != null) {
+					description = Console.getLine("New description: ");
+					i.setDescription(description);
+					System.out.println("Description for " + number + " has been changed to " + description);
+				} else {
+					System.out.println();
+				System.out.println("ITEM_NOT_FOUND_MSG" + number);
+				}
 				break;
 			case 5:
 				// delete an item
@@ -88,8 +100,13 @@ public class ItemManagerApp {
 				System.out.println("=================");
 				number = Console.getInt("Number of item to be deleted: ");
 				Item delNbr = getItem(number);
-				items.remove(delNbr);
-				System.out.println(delNbr + " has been deleted.");
+				if (delNbr != null) {
+					items.remove(delNbr);
+					System.out.println(delNbr + " has been deleted.");
+				} else {
+					System.out.println();
+				System.out.println("ITEM_NOT_FOUND_MSG" + number);
+				}
 				break;
 			case 9:
 				// exit
@@ -126,7 +143,7 @@ public class ItemManagerApp {
 			if (item.getNumber() == number) {
 				foundItem = item;
 			}
-		} 
+		}
 		return foundItem;
 	}
 
