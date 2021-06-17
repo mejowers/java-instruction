@@ -12,11 +12,7 @@ public class NameParserApp {
         String name = sc.nextLine();
         System.out.println();
         
-        String[] words = name.split(" ");
-    	for (String word: words) {
-    		System.out.println("First name: \n");
-    	}
-       
+            
         String[] nameParts = name.split(" ");
         String firstName = nameParts[0];
         String middleName = nameParts[1];
