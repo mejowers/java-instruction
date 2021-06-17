@@ -11,7 +11,6 @@ import business.Item;
 public class ItemManagerApp {
 	private static List<Item> items;
 	private static final String ITEM_NOT_FOUND_MSG = "Item not found: ";
-	
 
 	public static void main(String[] args) {
 		// initialize items list and add some office items
@@ -86,7 +85,7 @@ public class ItemManagerApp {
 					System.out.println("Description for " + number + " has been changed to " + description);
 				} else {
 					System.out.println();
-				System.out.println("ITEM_NOT_FOUND_MSG" + number);
+					System.out.println("ITEM_NOT_FOUND_MSG" + number);
 				}
 				break;
 			case 5:
@@ -105,7 +104,7 @@ public class ItemManagerApp {
 					System.out.println(delNbr + " has been deleted.");
 				} else {
 					System.out.println();
-				System.out.println("ITEM_NOT_FOUND_MSG" + number);
+					System.out.println("ITEM_NOT_FOUND_MSG" + number);
 				}
 				break;
 			case 9:
