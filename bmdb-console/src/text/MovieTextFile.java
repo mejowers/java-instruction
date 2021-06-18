@@ -109,17 +109,13 @@ public class MovieTextFile implements DAO<Movie> {
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(
 											   new FileWriter(moviesFile)))) {
 			for (Movie movie : movies) {
-				out.print(movie.getId() + FIELD_SEP);
-				out.println(movie.getDescription());
+				out.println(movie.getId() + FIELD_SEP + movie.getTitle() + FIELD_SEP + movie.getRating() +
+						FIELD_SEP + movie.getYear() + FIELD_SEP + movie.getDirector());
 			}
 			success = true;
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
 		return success;
-
 	}
-
-	
-
 }
