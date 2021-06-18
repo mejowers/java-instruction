@@ -63,8 +63,8 @@ public class BmdbConsoleApp {
 				break;
 			case 4:
 			//update
-				System.out.println("Update movie (for information staying the same type current information)");
-				System.out.println("========================================================================");
+				System.out.println("Update movie");
+				System.out.println("============");
 				id = Console.getInt("ID: ");
 				movie = moviesDAO.get(id);
 							
@@ -128,13 +128,13 @@ public class BmdbConsoleApp {
 	
 	private static void displayMenu() {
 		System.out.println();
-		System.out.println("Command Menu:");
-		System.out.println("========================");
-		System.out.println("1 - Get all movies.");
-		System.out.println("2 - Get a movie.");
+		System.out.println("***Command Menu***");
+		System.out.println("==================");
+		System.out.println("1 - Get all movies");
+		System.out.println("2 - Get a movie");
 		System.out.println("3 - Add an movie.");
-		System.out.println("4 - Edit movie information.");		
-		System.out.println("5 - Delete a movie.");
+		System.out.println("4 - Edit movie");		
+		System.out.println("5 - Delete a movie");
 		System.out.println("9 - Exit");
 		System.out.println();
 	
