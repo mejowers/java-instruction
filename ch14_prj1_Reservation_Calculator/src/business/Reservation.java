@@ -26,7 +26,6 @@ public class Reservation {
 	 * @return the arrivalDate
 	 */
 	public LocalDate getArrivalDate() {
-		
 		return arrivalDate;
 	}
 
