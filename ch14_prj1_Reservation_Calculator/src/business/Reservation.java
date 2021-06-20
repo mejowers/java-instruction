@@ -2,6 +2,8 @@ package business;
 
 import java.time.LocalDate;
 
+import com.util.Console;
+
 public class Reservation {
 	
 	final double PRICE_PER_NIGHT = 145.00;
@@ -26,6 +28,9 @@ public class Reservation {
 	 * @return the arrivalDate
 	 */
 	public LocalDate getArrivalDate() {
+		int arrivalYear = Console.getInt("Year: ");
+		int arrivalMonth = Console.getInt("Month: ");
+		int arrivalDay = Console.getInt("Day: ");
 		return arrivalDate;
 	}
 
