@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class AgeCalculatorApp {
@@ -21,8 +22,10 @@ public class AgeCalculatorApp {
         
         LocalDate currentDate = LocalDate.now();
         LocalDate birthDate = LocalDate.parse(dateOfBirthString);
-        
-        
+    	if (birthDate.isAfter(currentDate)) {
+			System.out.println("This date isn't here yet. \n");
+		}else {
+            
         // If user's date of birth is valid
             // Format and print user's date of birth
             System.out.println("Your date of birth is "+getBirthDateFormatted(birthDate));
@@ -31,13 +34,18 @@ public class AgeCalculatorApp {
             System.out.println("The current date is "+getCurrentDateFormatted(currentDate));;
 
             // Calculate and print the user's age
-            System.out.println("Your age is ");
+        
+    			
+            long ageYears = ChronoUnit.YEARS.between(birthDate, currentDate);
+    		System.out.println("Your age is " + ageYears);
+    		}
     }
     public static String getBirthDateFormatted(LocalDate birthDate) {
     	DateTimeFormatter birthDateFmt = DateTimeFormatter.ofLocalizedDate(
     			FormatStyle.MEDIUM);
     	return birthDateFmt.format(birthDate);
     }
+    
     public static String getCurrentDateFormatted(LocalDate currentDate) {
     	DateTimeFormatter currentDateFmt = DateTimeFormatter.ofLocalizedDate(
     			FormatStyle.MEDIUM);
