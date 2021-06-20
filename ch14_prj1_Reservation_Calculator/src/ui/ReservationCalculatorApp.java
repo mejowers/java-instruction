@@ -1,5 +1,9 @@
 package ui;
 
+import java.util.Scanner;
+
+import com.util.Console;
+
 public class ReservationCalculatorApp {
 
 	public static void main(String[] args) {
@@ -7,8 +11,19 @@ public class ReservationCalculatorApp {
 		System.out.println();
 		
 		String choice = "y";
-		while choice.equalsIgnoreCase("y") {
+		while (choice.equalsIgnoreCase("y")) {
 			
+			
+	   
+			
+			
+			
+			
+		        
+		        
+		        
+		choice = Console.getString("Continue: (y/n)?", "y", "n");     
+		        
 		}
 		
 		
