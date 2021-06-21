@@ -4,6 +4,7 @@ import com.util.Console;
 
 import Interface.DAO;
 import business.Movie;
+import db.MovieDB;
 import text.MovieTextFile;
 
 public class BmdbConsoleApp {
@@ -15,7 +16,7 @@ public class BmdbConsoleApp {
 				
 		// creating instance of MovieTextFile should create our file
 		// on the first time run of this app
-		DAO<Movie> moviesDAO = new MovieTextFile();
+		DAO<Movie> moviesDAO = new MovieDB();
 		
 		int command = 0;
 		while (command !=9) {

@@ -45,12 +45,12 @@ public class MovieDB implements DAO<Movie> {
 	 * @param rs 
 	 * 
 	 */
-	private void getMovieFromRow(ResultSet rs) throws SQLException {
+	private Movie getMovieFromRow(ResultSet rs) throws SQLException {
 		// for each row parse an item
 		int id = rs.getInt(1);
 		String title = rs.getString(2);
-		String rating = rs.getString(3);
-		int year = rs.getInt(4);
+		int year = rs.getInt(3);
+		String rating = rs.getString(4);
 		String director = rs.getString(5);
 		Movie movie = new Movie(id, title, rating, year, director);
 		return movie;
