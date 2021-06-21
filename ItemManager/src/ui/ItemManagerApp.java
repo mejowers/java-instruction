@@ -49,9 +49,9 @@ public class ItemManagerApp {
 			//add
 				System.out.println("Add an item");
 				System.out.println("========================");
-				id = Console.getInt("ID: ");
+//				id = Console.getInt("ID: ");
 				String desc = Console.getLine("Description: ");
-				if (itemsDAO.add(new Item(id, desc))) {
+				if (itemsDAO.add(new Item(desc))) {
 					System.out.println("Item added!");
 				} 
 				else {

@@ -62,21 +62,52 @@ public class ItemDB implements DAO<Item> {
 	}
 
 	@Override
-	public boolean add(Item t) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean add(Item item) {
+		boolean success = false;
+		String sql = "insert into item (description) values (?)";
+		try (PreparedStatement stmt = getConnection().prepareStatement(sql)){
+			stmt.setString(1, item.getDescription());
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected == 1)  {
+				success = true;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();	
+		}		
+		return success;
 	}
 
 	@Override
-	public boolean update(Item t) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean update(Item item) {
+		boolean success = false;
+		String sql = "update item set description = ? where id = ?";
+		try (PreparedStatement stmt = getConnection().prepareStatement(sql)){
+			stmt.setString(1, item.getDescription());
+			stmt.setInt(2, item.getId());
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected == 1)  {
+				success = true;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();	
+		}		
+		return success;
 	}
 
 	@Override
-	public boolean delete(Item t) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(Item item) {
+		boolean success = false;
+		String sql = "delete from item where id = ?";
+		try (PreparedStatement stmt = getConnection().prepareStatement(sql)){
+			stmt.setInt(1, item.getId());
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected == 1)  {
+				success = true;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();	
+		}		
+		return success;
 	}
 
 }

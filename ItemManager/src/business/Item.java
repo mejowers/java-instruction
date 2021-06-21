@@ -15,6 +15,10 @@ public class Item {
 		super();
 	}
 	
+	public Item(String desc) {
+		this.description = desc;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -33,7 +37,7 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", description=" + description + "]";
+		return "Item id " + id + "-" + description;
 	}
 	
 	
