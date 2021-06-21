@@ -3,6 +3,7 @@ package ui;
 import com.util.Console;
 
 import business.Item;
+import db.ItemDB;
 import interfaces.DAO;
 import text.ItemTextFile;
 
@@ -14,7 +15,7 @@ public class ItemManagerApp {
 				
 		// creating instance of ItemTextFile should create our file
 		// on the first time run of this app
-		DAO<Item> itemsDAO = new ItemTextFile();
+		DAO<Item> itemsDAO = new ItemDB();
 		
 		int command = 0;
 		while (command !=9) {
