@@ -30,9 +30,7 @@ public class Reservation {
 	 * @return the arrivalDate
 	 */
 	public LocalDate getArrivalDate() {
-		int arrivalYear = Console.getInt("Year: ");
-		int arrivalMonth = Console.getInt("Month: ");
-		int arrivalDay = Console.getInt("Day: ");
+	
 		return arrivalDate;
 	}
 

@@ -1,6 +1,7 @@
 package ui;
 
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.Scanner;
 
 import com.util.Console;
@@ -15,16 +16,18 @@ public class ReservationCalculatorApp extends Reservation {
 		
 		String choice = "y";
 		while (choice.equalsIgnoreCase("y")) {
-			System.out.println("Enter Arrival Information:");
-			int arrivalYear = Console.getInt("Year: ");
-			int arrivalMonth = Console.getInt("Month: ");
-			int arrivalDay = Console.getInt("Day: ");
-			
+			int arrivalMonth = Console.getInt("Enter the arrival month (1-12): ");
+			int arrivalDay = Console.getInt("Enter the arrival day (1-31): ");
+			int arrivalYear = Console.getInt("Enter the arrival year: ");
 			System.out.println();
-			System.out.println("Enter Departure Information:");
-			int departureYear = Console.getInt("Year: ");
-			int departureMonth = Console.getInt("Month: ");
-			int departureDay = Console.getInt("Day: ");
+			
+			int departureMonth = Console.getInt("Enter the departure month (1-12): ");
+			int departureDay = Console.getInt("Enter the departure day (1-31): ");
+			int departureYear = Console.getInt("Enter the departure year: ");
+			System.out.println();
+						
+						
+			
 			
 			
 			
