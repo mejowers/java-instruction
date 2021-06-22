@@ -145,5 +145,23 @@ public class CreditDB implements DAO<Credit> {
 		return success;
 	}
 	
+	public List<Credit> getCreditsForMovie(Movie movie) {
+		List<Credit> credits = new ArrayList<>();
+		String sql = ("select * from credit"
+				+ " join actor on actorid = actor.ID"
+				+ " join movie on movieid = movie.ID"
+				+ " where movieid = ? ");
+		try {PreparedStatement stmt = getConnection().prepareStatement(sql);
+			stmt.setInt(1, movie.getId());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+			Credit credit = getCreditFromRow(rs);
+			credits.add(credit);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return credits;
+	}
 		
 }

@@ -1,6 +1,7 @@
 package ui;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.util.Console;
 
@@ -24,7 +25,7 @@ public class BmdbConsoleApp {
 		// on the first time run of this app
 		DAO<Movie> moviesDAO = new MovieDB();
 		DAO<Actor> actorsDAO = new ActorDB();
-		CreditDB creditsDAO = new CreditDB();
+		CreditDB creditsDB = new CreditDB();
 		
 		
 		int command = 0;
@@ -226,7 +227,7 @@ public class BmdbConsoleApp {
 				//get all
 				System.out.println("***Get a list of all credits***");
 				System.out.println("==============================");
-			for (Credit credit: creditsDAO.getAll()) {
+			for (Credit credit: creditsDB.getAll()) {
 					System.out.println(credit.getCreditString());
 					System.out.println();
 				}
@@ -236,7 +237,7 @@ public class BmdbConsoleApp {
 				System.out.println("***Get credit by Id***");
 				System.out.println("=====================");
 				id = Console.getInt("ID: ");
-				Credit credit = creditsDAO.get(id);
+				Credit credit = creditsDB.get(id);
 				if (credit != null) {
 					System.out.println("Credit found: "+credit.getCreditString());
 					System.out.println();
@@ -321,6 +322,23 @@ public class BmdbConsoleApp {
 				// pull Credit for a movie
 				System.out.println("***List Movie Credits***");
 				System.out.println("========================");
+				id = Console.getInt("ID: ");
+				movie = moviesDAO.get(id);
+				if (movie != null) {
+					// get all credits for a movie
+					// call creditDB.getAllCreditsForMovie, passing the movie
+					List<Credit> credits = creditsDB.getCreditsForMovie(movie);
+					System.out.println("Movie credits for: "+movie.getTitle()+" Year: "
+									+movie.getYear());
+					System.out.println();
+					for (Credit c: credits) {
+						System.out.println(c.getActor().getFullName() + " - " + c.getRole());
+					}
+				}
+				else {
+					System.out.println(ITEM_NOT_FOUND + id);
+				}
+				break;
 				
 			case 99:
 				// exit
