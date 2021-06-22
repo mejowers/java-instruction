@@ -50,7 +50,6 @@ public class BmdbConsoleApp {
 			//add
 				System.out.println("***Add a movie***");
 				System.out.println("=================");
-				id = Console.getInt("Id: ");
 				String title = Console.getLine("Title: ");
 				String rating = Console.getLine("Rating: ");
 				int year = Console.getInt("Year: ");

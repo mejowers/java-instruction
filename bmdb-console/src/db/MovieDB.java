@@ -88,18 +88,18 @@ public class MovieDB implements DAO<Movie> {
 	@Override
 	public boolean update(Movie movie) {
 		boolean success = false;
-		String sql = "UPDATE Movie SET "
-				   + "Title = ?"
-				   + "Rating = ?"
-				   + "Year = ?"
-				   + "Director = ?"
-				   + "WHERE id = ?";
+		String sql = "Update Movie set "
+				   + " Title = ?, "
+				   + " Rating = ?, "
+				   + " Year = ?, "
+				   + " Director = ? "
+				   + "Where id = ? ";
 		try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
-			stmt.setInt(1, movie.getId());
-			stmt.setString(2, movie.getTitle());
-			stmt.setString(3, movie.getRating());
-			stmt.setInt(4, movie.getYear());
-			stmt.setString(5, movie.getDirector());
+			stmt.setString(1, movie.getTitle());
+			stmt.setString(2, movie.getRating());
+			stmt.setInt(3, movie.getYear());
+			stmt.setString(4, movie.getDirector());
+			stmt.setInt(5, movie.getId());
 			int rowsAffected = stmt.executeUpdate();
 			if (rowsAffected ==1) {
 				success = true;
@@ -107,8 +107,9 @@ public class MovieDB implements DAO<Movie> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return success;
+	return success;
 	}
+		
 
 	@Override
 	public boolean delete(Movie movie) {
