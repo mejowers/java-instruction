@@ -8,16 +8,8 @@ import java.util.List;
 import Interface.DAO;
 import business.Actor;
 
-public class ActorDB implements DAO<Actor> {
+public class ActorDB extends BaseDB implements DAO<Actor> {
 	
-	
-	private Connection getConnection() throws SQLException {
-		String dbURL = "jdbc:mysql://localhost:3306/bmdb";
-		String username = "bmdb_user";
-		String pwd = "sesame";
-		Connection conn = DriverManager.getConnection(dbURL, username, pwd);
-		return conn;
-	}
 
 	@Override
 	public Actor get(int id) {
