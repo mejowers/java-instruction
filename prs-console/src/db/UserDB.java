@@ -36,7 +36,6 @@ public class UserDB extends BaseDB implements DAO<User> {
 				users.add(user);
 			}
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		}
 		return users;

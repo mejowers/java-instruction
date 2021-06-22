@@ -16,8 +16,7 @@ public class PrsConsoleApp {
 		System.out.println("===============================");
 
 		DAO<User> usersDAO = new UserDB();
-		
-		
+				
 		int command = 0;
 		while (command !=9) {
 			displayMenu();
@@ -30,17 +29,28 @@ public class PrsConsoleApp {
 				System.out.println("***Get a list of all users***");
 				System.out.println("-----------------------------");
 				for (User user: usersDAO.getAll()) {
-					
+					System.out.println(user);
 				}
+				break;
+			case 2: 
+				// get by id
+				System.out.println("***Get a user by id***");
+				System.out.println("----------------------");
+				int id = Console.getInt("ID: ");
+				User user = usersDAO.get(id);
+				if (user != null) {
+					System.out.println("User found: "+user);
+				} else 
+				{System.out.println(ITEM_NOT_FOUND +id);
+				}
+				break;
+			case 9:
+				// exit
+				break;
+				
 			}
 		}
 		
-		
-		
-		
-		
-		
-
 		System.out.println("Thank you for using the PRS console app! Have a great day!");
 
 	}

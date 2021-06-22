@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class BaseDB {
 	
 	protected Connection getConnection() throws SQLException {
-		String dbURL = "jdbc:mysql://localhost:3306/bmdb";
-		String username = "bmdb_user";
+		String dbURL = "jdbc:mysql://localhost:3306/prs";
+		String username = "prs_user";
 		String pwd = "sesame";
 		Connection conn = DriverManager.getConnection(dbURL, username, pwd);
 		return conn;
