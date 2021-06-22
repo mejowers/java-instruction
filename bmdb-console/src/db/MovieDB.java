@@ -27,9 +27,7 @@ public class MovieDB implements DAO<Movie> {
 	@Override
 	public List<Movie> getAll() {
 		List<Movie> movies = new ArrayList<>();
-		Statement stmt;
-		try {
-			stmt = getConnection().createStatement();
+		try {Statement stmt = getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select * from movie order by id");
 			while (rs.next()) {
 			Movie movie = getMovieFromRow(rs);
@@ -49,8 +47,8 @@ public class MovieDB implements DAO<Movie> {
 		// for each row parse an item
 		int id = rs.getInt(1);
 		String title = rs.getString(2);
-		int year = rs.getInt(3);
-		String rating = rs.getString(4);
+		String rating = rs.getString(3);
+		int year = rs.getInt(4);
 		String director = rs.getString(5);
 		Movie movie = new Movie(id, title, rating, year, director);
 		return movie;
@@ -58,7 +56,22 @@ public class MovieDB implements DAO<Movie> {
 
 	@Override
 	public boolean add(Movie movie) {
-		// TODO Auto-generated method stub
+		Boolean success = false;
+		String sql = "insert into movie (title, rating, year, director) values (?, ?, ?, ?)";
+		try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
+				stmt.setString(1, movie.getTitle());
+				stmt.setString(2, movie.getRating());
+				stmt.setInt(3, movie.getYear());
+				stmt.setString(4, movie.getDirector());
+				int rowsAffected = stmt.executeUpdate();
+				if (rowsAffected ==1) {
+					success = true;
+				}
+			}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 
