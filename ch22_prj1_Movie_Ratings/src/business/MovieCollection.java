@@ -18,7 +18,7 @@ public class MovieCollection {
 	}
 	
 	public void add(Movie movie) {
-		// TODO Auto-generated method stub
+		movies.add(movie);
 		
 	}
 
