@@ -44,16 +44,50 @@ public class PrsConsoleApp {
 				{System.out.println(ITEM_NOT_FOUND +id);
 				}
 				break;
-			case 9:
-				// exit
+			case 3:
+				// add user
+				System.out.println("***Add user***");
+				System.out.println("--------------");
+				String userName = Console.getString("Username: ");
+				String password = Console.getString("Password: ");
+				String firstName = Console.getLine("First name: ");
+				String lastName = Console.getLine("Last name: ");
+				String phone = Console.getString("Phone: ");
+				String email = Console.getString("Email: ");
+				boolean reviewer = Console.getString("Reviewer (true/false): ", false) != null;
+				boolean admin = Console.getString("Admin (true/false): ", false) != null;
+				if (usersDAO.add(new User(userName, password, firstName, lastName,
+						phone, email, (boolean)reviewer, (boolean)admin))) {
+					System.out.println();
+					System.out.println("User added!");
+				} else {
+					System.out.println("Error adding user!");
+				}
 				break;
-				
+			case 4:
+				//edit a user
+				break;
+			case 5:
+				//delete a user
+				System.out.println("***Delete a user***");
+				System.out.println("-------------------");
+				id = Console.getInt("ID: ");
+				user = usersDAO.get(id);
+				if (user != null) {
+					usersDAO.delete(user);
+					System.out.println();
+					System.out.println("User deleted!");
+				}else 
+				{System.out.println("Unable to delete user.");
 			}
+				break;
+			case 9: 
+				//exit
+				break;
 		}
-		
-		System.out.println("Thank you for using the PRS console app! Have a great day!");
-
 	}
+		System.out.println("Thank you for using the PRS console app! Have a great day!");
+}
 
 	private static void displayMenu() {
 		System.out.println();
@@ -62,7 +96,7 @@ public class PrsConsoleApp {
 		System.out.println("1 - Get all Users");
 		System.out.println("2 - Get a user");
 		System.out.println("3 - Add a user");
-		System.out.println("4 - Edit a user");
+		System.out.println("4 - Edit a user - not functional at this time");
 		System.out.println("5 - Delete a user");
 		System.out.println("9 - Exit");
 		System.out.println();

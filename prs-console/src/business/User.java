@@ -29,6 +29,18 @@ public class User {
 		this.reviewer = reviewer;
 		this.admin = admin;
 	}
+	public User(String userName, String password, String firstName, String lastName,
+			String phone, String email,	boolean reviewer, boolean admin) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.email = email;
+		this.reviewer = reviewer;
+		this.admin = admin;
+	}
 
 	/**
 	 * @return the id
@@ -158,8 +170,12 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", phone=" + phone + ", email=" + email + ", reviewer=" + reviewer + ", admin=" + admin + "]";
+		return "User id: "+ id + "\n" +
+	           "Username: " + userName + ", Password: " + password + "\n" +
+			   "Name: " + firstName + " "+ lastName+ "\n"+
+	           "Phone: "+ phone +", Email: "+ email + "\n"+
+	           "Reviewer: " + reviewer +", Admin: " +admin +"\n";
+		
 	}
 	
 	
