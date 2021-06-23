@@ -18,13 +18,20 @@ public class PrsConsoleApp {
 		DAO<User> usersDAO = new UserDB();
 				
 		int command = 0;
-		while (command !=9) {
+		while (command !=99) {
 			displayMenu();
 			command = Console.getInt("Command: ");
 			System.out.println();
 			
 			switch (command) {
-			case 1: 
+			case 10:
+				command = 0;
+				while (command !=9) {
+					displayUserMenu();
+					command = Console.getInt("Command: ");
+							System.out.println();
+				switch (command) {
+				case 1: 
 				//get all
 				System.out.println("***Get a list of all users***");
 				System.out.println("-----------------------------");
@@ -66,7 +73,63 @@ public class PrsConsoleApp {
 				break;
 			case 4:
 				//edit a user
-				break;
+				System.out.println("Update a user");
+				System.out.println("=============");
+				id = Console.getInt("ID: ");
+				user = usersDAO.get(id);
+							
+				command = 0;
+				while (command !=10) {
+					updateUserMenu();
+					command = Console.getInt("Command: ");
+					System.out.println();
+					
+				if (user != null) {
+					switch (command) {
+					case 1:
+						String newUserName = Console.getString("Update username: ");
+						user.setUserName(newUserName);
+						break;
+					case 2:
+						String newPassword = Console.getString("Update password: ");
+						user.setPassword(newPassword);
+						break;
+					case 3: 
+						String newFirstName = Console.getLine("Update first name: ");
+						user.setFirstName(newFirstName);
+						break;
+					case 4:
+						String newLastName = Console.getLine("Update last name: ");
+						user.setLastName(newLastName);
+						break;
+					case 5:
+						String newPhone = Console.getString("Update phone number: ");
+						user.setPhone(newPhone);
+						break;
+					case 6:
+						String newEmail = Console.getString("Update email: ");
+						user.setEmail(newEmail);
+						break;
+					case 7:
+						boolean newReviewer = Console.getString("Update reviewer access: ", false) != null;
+						user.setReviewer(newReviewer);
+						break;
+					case 8:
+						boolean newAdmin = Console.getString("Update admin access: ", false) != null;
+						user.setAdmin(newAdmin);
+						break;
+					case 10: 
+						//finished updating
+						break;
+					}
+					usersDAO.update(user);
+					System.out.println("User information updated!");
+				}
+				else {
+					System.out.println(ITEM_NOT_FOUND + id);
+				} 
+			}break;
+				
 			case 5:
 				//delete a user
 				System.out.println("***Delete a user***");
@@ -84,23 +147,64 @@ public class PrsConsoleApp {
 			case 9: 
 				//exit
 				break;
-		}
-	}
+				}
+			}
+				
+				break;
+			case 20:
+				break;
+			case 30:
+				break;
+			case 40:
+				break;
+			case 50:
+				break;
+			
+			}
+			
+		}	
 		System.out.println("Thank you for using the PRS console app! Have a great day!");
 }
 
-	private static void displayMenu() {
+	private static void displayUserMenu() {
 		System.out.println();
-		System.out.println("****Command Menu****");
-		System.out.println("====================");
+		System.out.println("****User Command Menu****");
+		System.out.println("=========================");
 		System.out.println("1 - Get all Users");
 		System.out.println("2 - Get a user");
 		System.out.println("3 - Add a user");
-		System.out.println("4 - Edit a user - not functional at this time");
+		System.out.println("4 - Edit a user");
 		System.out.println("5 - Delete a user");
 		System.out.println("9 - Exit");
 		System.out.println();
-		
 	}
-	
+
+	private static void displayMenu() {
+		System.out.println();
+		System.out.println("***Main Command Menu***");
+		System.out.println("=======================");
+		System.out.println("10 - User Command Menu");
+		System.out.println("20 - Product Command Menu");
+		System.out.println("30 - Vendor Command Menu");
+		System.out.println("40 - Request Command Menu");
+		System.out.println("50 - LineItem Command Menu");
+		System.out.println("99 - Exit Menu");
+		System.out.println();
+	}
+	private static void updateUserMenu() {
+		System.out.println();
+		System.out.println("***Update a User Menu***");
+		System.out.println("========================");
+		System.out.println("1 - Update user name");
+		System.out.println("2 - Update password");
+		System.out.println("3 - Update first name");
+		System.out.println("4 - Update last name");
+		System.out.println("5 - Update phone");
+		System.out.println("6 - Update email address");
+		System.out.println("7 - Update reviewer access");
+		System.out.println("8 - Update admin access");
+		System.out.println("10 - Finished updating user");
+		System.out.println();
+	}
+
 }
