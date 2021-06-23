@@ -61,13 +61,14 @@ public class PrsConsoleApp {
 				String lastName = Console.getLine("Last name: ");
 				String phone = Console.getString("Phone: ");
 				String email = Console.getString("Email: ");
-				boolean reviewer = Console.getString("Reviewer (true/false): ", false) != null;
-				boolean admin = Console.getString("Admin (true/false): ", false) != null;
-				if (usersDAO.add(new User(userName, password, firstName, lastName,
-						phone, email, (boolean)reviewer, (boolean)admin))) {
+				boolean reviewer = Console.getBoolean("Reviewer (y/): ");
+				boolean admin = Console.getBoolean("Admin (y/n); ");
+				if (usersDAO.add(new User(userName,password, firstName, lastName, phone, 
+						email, reviewer, admin))) {
 					System.out.println();
 					System.out.println("User added!");
-				} else {
+				}
+				  else {
 					System.out.println("Error adding user!");
 				}
 				break;
@@ -111,11 +112,11 @@ public class PrsConsoleApp {
 						user.setEmail(newEmail);
 						break;
 					case 7:
-						boolean newReviewer = Console.getString("Update reviewer access: ", false) != null;
+						boolean newReviewer = Console.getBoolean("Update reviewer access (y/n): ");
 						user.setReviewer(newReviewer);
 						break;
 					case 8:
-						boolean newAdmin = Console.getString("Update admin access: ", false) != null;
+						boolean newAdmin = Console.getBoolean("Update admin access (y/n): ");
 						user.setAdmin(newAdmin);
 						break;
 					case 10: 

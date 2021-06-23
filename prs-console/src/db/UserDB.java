@@ -88,15 +88,17 @@ public class UserDB extends BaseDB implements DAO<User> {
 		return false;
 	}
 	private User getUserFromRow(ResultSet rs) throws SQLException {
-		int id = rs.getInt(1);
-		String userName = rs.getString(2);
-		String password = rs.getString(3);
-		String firstName = rs.getString(4);
-		String lastName = rs.getString(5);
-		String phone = rs.getString(6);
-		String email = rs.getString(7);
-		Boolean reviewer = rs.getBoolean(8);
-		Boolean admin = rs.getBoolean(9);
+		//for each row parse a user
+		//pulling by column name instead of column number
+		int id = rs.getInt("ID");
+		String userName = rs.getString("Username");
+		String password = rs.getString("Password");
+		String firstName = rs.getString("FirstName");
+		String lastName = rs.getString("LastName");
+		String phone = rs.getString("Phone");
+		String email = rs.getString("Email");
+		Boolean reviewer = rs.getBoolean("Reviewer");
+		Boolean admin = rs.getBoolean("Admin");
 		User user = new User(id, userName, password, firstName, lastName, phone, 
 				email, reviewer, admin);
 		return user;
