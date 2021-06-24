@@ -3,9 +3,7 @@ package ui;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import com.util.Console;
-
 import java.util.*;
 import business.Movie;
 import business.MovieCollection;
@@ -57,22 +55,29 @@ public class MovieRatingsApp {
 				case 2:		// View top rated movies
 					System.out.println("Movies rated 4.0 or higher");
 					System.out.println("==========================");
+					// p.709
+					List<Movie> highestRatedMovies = mc.filterMovies(m -> m.getRating() >=4);
+					highestRatedMovies.stream().forEach(m ->System.out.println(m));
 					break;
 				case 3:		// View most recent movies (movies released within last 10 years)
+					int currYear = LocalDate.now().getYear();
 					System.out.println("Movies released in last 10 years");
 					System.out.println("================================");
+					List<Movie> recentMovies = mc.filterMovies(m -> (currYear - m.getYear()) <=10);
+					recentMovies.stream().forEach(m ->System.out.println(m));
 					break;
 				case 4:
 					System.out.println("All movies");
 					System.out.println("==========");
+					mc.getMovies().stream().forEach(m-> System.out.println(m));
 					break;
 				case 5:		// View ratings
 					System.out.println("Movie rating data");
 					System.out.println("=================");
-					System.out.println("# of movies:  ");
-					System.out.println("lowest rating:  ");
-					System.out.println("highest rating:  ");
-					System.out.println("average rating:  ");
+					System.out.println("# of movies:  "+mc.getSize());
+					System.out.println("lowest rating:  "+mc.getLowestRating());
+					System.out.println("highest rating:  "+mc.getHighestRating());
+					System.out.println("average rating:  "+mc.getAverageRating());
 					break;
 				case 6:
 					System.out.println("Goodbye!");
@@ -80,8 +85,7 @@ public class MovieRatingsApp {
 			}
 		
 		}
-		
-
+	
 	}
 
 	public static void displayMenu() {

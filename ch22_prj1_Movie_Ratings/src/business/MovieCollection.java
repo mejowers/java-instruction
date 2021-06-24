@@ -4,52 +4,65 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+
 public class MovieCollection {
-
-	List<Movie> movies = new ArrayList<>();
-
-	public MovieCollection(List<Movie> movies) {
-		super();
-		this.movies = movies;
-	}
-
-	public MovieCollection() {
-		super();
-	}
 	
-	public void add(Movie movie) {
-		movies.add(movie);		
-	}
-
-	/**
-	 * @return the movies
-	 */
-	public List<Movie> getMovies(Predicate<Movie> condition) {
-		List<Movie> filterMovies = new ArrayList<>();
-				for (Movie m: movies) {
-					if (condition.test(m)) {
-						filterMovies.add(m);
-					}
-				}
-		return filterMovies;
-	}
+	private List<Movie> movies;
 	
-
-
-	/**
-	 * @param movies the movies to set
-	 */
-	public void setMovies(List<Movie> movies) {
-		this.movies = movies;
+		public MovieCollection() {
+		super();
+			movies = new ArrayList<>();
 	}
-
-	@Override
-	public String toString() {
-		return "MovieCollection [movies=" + movies + "]";
-	}
-
-	public double getLowestRating() {
 		
-	}
-	
+		//add Movie object to internal list
+		public void add(Movie movie) {
+			movies.add(movie);
+		}
+
+		//filter movies list by the condition
+		public List<Movie> filterMovies(Predicate<Movie> condition) {
+			List<Movie> filterMovies = new ArrayList<>();
+			for (Movie movie: movies) {
+				if (condition.test(movie)) {
+					filterMovies.add(movie);
+				}
+			}
+		return filterMovies;
+		}
+		
+		public double getLowestRating() {
+		// p.721
+			double lowestRating = movies.stream()
+					.map(Movie::getRating)
+					.reduce(5.0, Math::min);
+			return lowestRating;
+		}
+		
+		public double getHighestRating() {
+			//p. 721
+			double highestRating = movies.stream()
+					.map(Movie::getRating)
+					.reduce(1.0, Math::max);
+			return highestRating;
+		}
+		
+		public double getAverageRating() {
+			double sum = movies.stream()
+					.mapToDouble(m-> m.getRating())
+					.sum();
+			return sum / movies.size();
+		}
+		
+		public int getSize() {
+			return movies.size();
+		}
+
+		/**
+		 * @return the movies
+		 */
+		public List<Movie> getMovies() {
+			return movies;
+		}
+
+		
 }
