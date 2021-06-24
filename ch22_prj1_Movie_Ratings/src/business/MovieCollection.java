@@ -18,8 +18,7 @@ public class MovieCollection {
 	}
 	
 	public void add(Movie movie) {
-		movies.add(movie);
-		
+		movies.add(movie);		
 	}
 
 	/**
@@ -49,6 +48,8 @@ public class MovieCollection {
 		return "MovieCollection [movies=" + movies + "]";
 	}
 
-	
+	public double getLowestRating() {
+		
+	}
 	
 }
