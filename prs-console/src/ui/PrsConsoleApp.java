@@ -61,7 +61,7 @@ public class PrsConsoleApp {
 				String lastName = Console.getLine("Last name: ");
 				String phone = Console.getString("Phone: ");
 				String email = Console.getString("Email: ");
-				boolean reviewer = Console.getBoolean("Reviewer (y/): ");
+				boolean reviewer = Console.getBoolean("Reviewer (y/n): ");
 				boolean admin = Console.getBoolean("Admin (y/n); ");
 				if (usersDAO.add(new User(userName,password, firstName, lastName, phone, 
 						email, reviewer, admin))) {

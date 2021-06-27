@@ -29,6 +29,19 @@ public class Pet {
 		this.disposition = disposition;
 		this.available = available;
 	}
+	
+
+	public Pet(String type, String breed, String name, LocalDate birthDate, String gender, String disposition,
+			boolean available) {
+		super();
+		this.type = type;
+		this.breed = breed;
+		this.name = name;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.disposition = disposition;
+		this.available = available;
+	}
 
 	/**
 	 * @return the id
@@ -140,6 +153,16 @@ public class Pet {
 	 */
 	public void setAvailable(boolean available) {
 		this.available = available;
+	}
+
+	@Override
+	public String toString() {
+		return "Pet id: "+id+"\n"+
+				"Type: " +type +", Breed: "+breed+", Name: " + name + ", BirthDate: " +birthDate+"\n"+
+				"Gender: "+gender+", Disposition: "+disposition+"\n"+
+				"Available: "+available+"\n";
+		
+				
 	}
 	
 	
