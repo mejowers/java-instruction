@@ -32,6 +32,22 @@ public class PetDB extends BaseDB implements DAO<Pet> {
 		return pet;
 	}
 	
+	public List<Pet> get(String gender) {
+		List<Pet> pets = new ArrayList<>();
+		String sql = "Select * from Pet where gender = ?";
+		try {
+			PreparedStatement stmt = getConnection().prepareStatement(sql);
+			stmt.setString(1, gender);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Pet pet = getPetFromRow(rs);
+				pets.add(pet);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pets;
+	}
 	@Override
 	public List<Pet> getAll() {
 		List<Pet> pets = new ArrayList<>();

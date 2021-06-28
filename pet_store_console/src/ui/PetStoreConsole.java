@@ -19,7 +19,8 @@ public class PetStoreConsole {
 		System.out.println("Welcome to the Pet Store Console!");
 		System.out.println("=================================");
 
-		DAO<Pet> petsDAO = new PetDB();
+//		DAO<Pet> petsDAO = new PetDB();
+		PetDB petsDb = new PetDB();
 
 		int command = 0;
 		while (command != 99) {
@@ -31,7 +32,7 @@ public class PetStoreConsole {
 			case 1:
 				System.out.println("**Complete list of Pets**");
 				System.out.println("-------------------------");
-				for (Pet pets : petsDAO.getAll()) {
+				for (Pet pets : petsDb.getAll()) {
 					System.out.println(pets);
 				}
 				break;
@@ -39,23 +40,21 @@ public class PetStoreConsole {
 				System.out.println("**Pet retrieved by ID**");
 				System.out.println("-----------------------");
 				int id = Console.getInt("Pet ID: ");
-				Pet pet = petsDAO.get(id);
+				Pet pet = petsDb.get(id);
 				if (pet != null) {
 					System.out.println("Pet found: " + pet);
 				} else
 					System.out.println("Pet not found. Try Again.");
 				break;
-//				case 3:
-//					System.out.println("**Pet retrieved by gender**");
-//					System.out.println("---------------------------");
-//					String genderRqst = Console.getString("Gender desired (m/f): ", "m","f");
-//					if (genderRqst == "m") {
-//						pets.stream()
-//							.filter(pets -> pets.getGender()== "m");
-//						System.out.println();
-//					}
-//					
-//					break;
+				
+				case 3:
+					System.out.println("**Pet retrieved by gender**");
+					System.out.println("---------------------------");
+					String gender = Console.getString("Gender desired (m/f): ", "m","f");
+					for (Pet pets : petsDb.get(gender)) {
+						System.out.println(pets);
+					}
+					break;
 			case 4:
 				System.out.println("****Add a pet****");
 				System.out.println("-----------------");
@@ -64,10 +63,10 @@ public class PetStoreConsole {
 				String name = Console.getLine("Name: ");
 				String birthDateStr = Console.getLine("Birth Date (YYYY-MM-DD): ");
 				LocalDate birthDate = LocalDate.parse(birthDateStr);
-				String gender = Console.getString("Gender (m/f): ");
+				gender = Console.getString("Gender (m/f): ");
 				String disposition = Console.getLine("Pet disposition: ");
 				boolean available = Console.getBoolean("Available (y/n): ");
-				if (petsDAO.add(new Pet(type, breed, name, birthDate, gender, disposition, 
+				if (petsDb.add(new Pet(type, breed, name, birthDate, gender, disposition, 
 						available))) {
 					System.out.println("Pet added!");
 				} else {
@@ -78,7 +77,7 @@ public class PetStoreConsole {
 				System.out.println("Update pet record");
 				System.out.println("-----------------");
 				id = Console.getInt("ID: ");
-				pet = petsDAO.get(id);
+				pet = petsDb.get(id);
 							
 				command = 0;
 				while (command !=10) {
@@ -100,11 +99,11 @@ public class PetStoreConsole {
 						String newName = Console.getLine("New pet name: ");
 						pet.setName(newName);
 						break;
-//					case 4:
-//						birthDate = Console.getLine("Birth Date (YYYY-MM-DD): ");
-//						birthDate = LocalDate.parse(birthDateStr);
-//						pet.setBirthDate(newBirthDate);
-//						break;
+					case 4:
+						birthDateStr = Console.getLine("Birth Date (YYYY-MM-DD): ");
+						birthDate = LocalDate.parse(birthDateStr);
+						pet.setBirthDate(birthDate);
+						break;
 					case 5: 
 						String newGender = Console.getString("New gender: ");
 						pet.setGender(newGender);
@@ -120,7 +119,7 @@ public class PetStoreConsole {
 					case 10: 
 						break;
 					}
-					petsDAO.update(pet);
+					petsDb.update(pet);
 					System.out.println("Pet information has been updated!");
 				}
 				else {
@@ -132,9 +131,9 @@ public class PetStoreConsole {
 				System.out.println("**Delete a pet by ID**");
 				System.out.println("----------------------");
 				id = Console.getInt("Pet ID: ");
-				pet = petsDAO.get(id);
+				pet = petsDb.get(id);
 				if (pet != null) {
-					petsDAO.delete(pet);
+					petsDb.delete(pet);
 					System.out.println("Pet Deleted:" + pet);
 				} else {
 					System.out.println("Unable to delete pet!");
