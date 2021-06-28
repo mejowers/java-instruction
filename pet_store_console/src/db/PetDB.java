@@ -1,5 +1,6 @@
 package db;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,9 +11,10 @@ import java.util.List;
 
 import business.Pet;
 import interfaces.DAO;
+import ui.PetStoreConsole;
 
-public class PetDB extends BaseDB implements DAO<Pet>{
-	
+public class PetDB extends BaseDB implements DAO<Pet> {
+
 	@Override
 	public Pet get(int id) {
 		Pet pet = null;
@@ -22,29 +24,12 @@ public class PetDB extends BaseDB implements DAO<Pet>{
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
-			pet = getPetFromRow(rs);	
+				pet = getPetFromRow(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return pet;
-	}
-	
-
-	public Pet getByGender() {
-	Pet pets = null;
-		String sql = "Select * from pet where gender = ?";
-		try {
-			PreparedStatement stmt = getConnection().prepareStatement(sql);
-			stmt.setString(1, pets.getGender());
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-			pets = getPetFromRow(rs);	
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return pets;
 	}
 	
 	@Override
@@ -60,13 +45,32 @@ public class PetDB extends BaseDB implements DAO<Pet>{
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-	}
+		}
 		return pets;
 	}
 
 	@Override
 	public boolean add(Pet pet) {
-		return false;
+		boolean success = false;
+		String sql = "insert into pet (type, breed, name, birthDate, gender,"
+				+ " disposition, available) values (?, ?, ?, ?, ?, ?, ?)";
+		try 
+			(PreparedStatement stmt = getConnection().prepareStatement(sql)){
+			stmt.setString(1, pet.getType());
+			stmt.setString(2, pet.getBreed());
+			stmt.setString(3, pet.getName());
+			stmt.setString(4, pet.getBirthDate().toString());
+			stmt.setString(5, pet.getGender());
+			stmt.setString(6, pet.getDisposition());
+			stmt.setBoolean(7, pet.isAvailable());
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected == 1) {
+				success = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	@Override
@@ -76,9 +80,23 @@ public class PetDB extends BaseDB implements DAO<Pet>{
 
 	@Override
 	public boolean delete(Pet pet) {
-		return false;
+		boolean success = false;
+		String sql = "delete from Pet where id = ?";
+		try 
+			(PreparedStatement stmt = getConnection().prepareStatement(sql)){
+			stmt.setInt(1, pet.getId());
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected == 1) {
+				System.out.println("Pet deleted!");
+			}else {
+				System.out.println("Error deleting pet. Try again.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return success;
 	}
-	
+
 	public Pet getPetFromRow(ResultSet rs) throws SQLException {
 		// for each row parse information
 		// pull information by column index
@@ -91,8 +109,7 @@ public class PetDB extends BaseDB implements DAO<Pet>{
 		String gender = rs.getString(6);
 		String disposition = rs.getString(7);
 		Boolean available = rs.getBoolean(8);
-		Pet pet = new Pet(id, type, breed, name, birthDate, gender, 
-				disposition, available);		
+		Pet pet = new Pet(id, type, breed, name, birthDate, gender, disposition, available);
 		return pet;
 	}
 
