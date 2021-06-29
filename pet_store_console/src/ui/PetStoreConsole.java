@@ -18,6 +18,7 @@ public class PetStoreConsole {
 
 		System.out.println("Welcome to the Pet Store Console!");
 		System.out.println("=================================");
+		System.out.println();
 
 //		DAO<Pet> petsDAO = new PetDB();
 		PetDB petsDb = new PetDB();
@@ -42,7 +43,8 @@ public class PetStoreConsole {
 				int id = Console.getInt("Pet ID: ");
 				Pet pet = petsDb.get(id);
 				if (pet != null) {
-					System.out.println("Pet found: " + pet);
+					System.out.println("Pet found!" + "\n"+ pet);
+					
 				} else
 					System.out.println("Pet not found. Try Again.");
 				break;
@@ -77,6 +79,7 @@ public class PetStoreConsole {
 				System.out.println("Update pet record");
 				System.out.println("-----------------");
 				id = Console.getInt("ID: ");
+				System.out.println();
 				pet = petsDb.get(id);
 							
 				command = 0;
@@ -109,7 +112,7 @@ public class PetStoreConsole {
 						pet.setGender(newGender);
 						break;
 					case 6:
-						String newDisposition = Console.getString("New disposition: ");
+						String newDisposition = Console.getLine("New disposition: ");
 						pet.setDisposition(newDisposition);
 						break;
 					case 7:
@@ -120,7 +123,8 @@ public class PetStoreConsole {
 						break;
 					}
 					petsDb.update(pet);
-					System.out.println("Pet information has been updated!");
+					System.out.println("Pet information has been updated! \n");
+					
 				}
 				else {
 					System.out.println("Pet requested was unable to be found. Try again.");
@@ -134,7 +138,7 @@ public class PetStoreConsole {
 				pet = petsDb.get(id);
 				if (pet != null) {
 					petsDb.delete(pet);
-					System.out.println("Pet Deleted:" + pet);
+					System.out.println("Pet Deleted! \n" + pet);
 				} else {
 					System.out.println("Unable to delete pet!");
 				}
@@ -170,5 +174,6 @@ public class PetStoreConsole {
 		System.out.println("6 - Update Disposition");
 		System.out.println("7 - Update Availibility");
 		System.out.println("10 - Exit Update Menu");
+		System.out.println();
 	}
 }

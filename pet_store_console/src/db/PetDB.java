@@ -91,9 +91,35 @@ public class PetDB extends BaseDB implements DAO<Pet> {
 
 	@Override
 	public boolean update(Pet pet) {
-		return false;
+		boolean success = false;
+		String sql = "Update Pet set "
+				   + " Type = ?, "
+				   + " Breed = ?, "
+				   + " Name = ?, "
+				   + " BirthDate = ?, "
+				   + " Gender = ?, "
+				   + " Disposition = ?, "
+				   + " Available = ? "
+				   + "Where id = ?";
+		try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
+			stmt.setString(1, pet.getType());
+			stmt.setString(2, pet.getBreed());
+			stmt.setString(3, pet.getName());
+			stmt.setString(4, pet.getBirthDate().toString());
+			stmt.setString(5, pet.getGender());
+			stmt.setString(6, pet.getDisposition());
+			stmt.setBoolean(7, pet.isAvailable());
+			stmt.setInt(8, pet.getId());
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected == 1) {
+				success = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return success;
 	}
-
+	
 	@Override
 	public boolean delete(Pet pet) {
 		boolean success = false;
