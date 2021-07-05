@@ -10,31 +10,31 @@ public class TipCalculatorApp {
 		System.out.println();
 
 		Scanner sc = new Scanner(System.in);
-		NumberFormat currency = NumberFormat.getCurrencyInstance();
-		NumberFormat percent = NumberFormat.getPercentInstance();
-		percent.setMaximumFractionDigits(2);
 
 		String choice = "y";
 		while (choice.equalsIgnoreCase("y")) {
 
 			System.out.print("Cost of meal: ");
-			BigDecimal cost = sc.nextBigDecimal();
+			BigDecimal cost = new BigDecimal(sc.next());
 			System.out.println();
-			
-			for (double rate = 15; rate <30; rate += 5) {
-				System.out.println(percent.format(rate/100));
-				BigDecimal rate1 = new BigDecimal(rate/100)
-						.setScale(2, RoundingMode.HALF_UP);
-				System.out.println("Tip Amount:     "+currency.format(cost.multipy(rate1)));
-				System.out.println("Total Amount:   "+currency.format(cost+(cost*(rate/100))));
+
+			NumberFormat currency = NumberFormat.getCurrencyInstance();
+			NumberFormat percentFmtr = NumberFormat.getPercentInstance();
+			NumberFormat moneyFmtr = NumberFormat.getCurrencyInstance();
+
+			for (double percent = 0.15; percent <= 0.25; percent += 0.05) {
+
+				// calculate tip and total
+				BigDecimal tip = new BigDecimal(Double.toString(percent));
+				BigDecimal amount = cost.multiply(tip);
+				BigDecimal total = cost.add(amount);
+
+				// display tip and total
+				System.out.println(percentFmtr.format(percent));
+				System.out.println("Tip amount:    " + moneyFmtr.format(amount));
+				System.out.println("Total amount:  " + moneyFmtr.format(total));
 				System.out.println();
-				
 			}
-			
-			
-			
-			
-			
 
 			System.out.println();
 			System.out.print("Continue? (y/n): ");
