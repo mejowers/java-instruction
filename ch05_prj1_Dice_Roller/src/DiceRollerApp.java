@@ -9,9 +9,6 @@ public class DiceRollerApp {
 		Scanner sc = new Scanner(System.in);
 
 		String choice = getNextString(sc, "Roll the Dice? (y/n): ");
-		
-		
-		
 
 		while (choice.equalsIgnoreCase("y")) {
 			int die1 = rollDie();
@@ -51,10 +48,5 @@ public class DiceRollerApp {
 			System.out.println("Box Cars");
 		}
 	}
-	
-			
-			
-			
-		
 
 }
