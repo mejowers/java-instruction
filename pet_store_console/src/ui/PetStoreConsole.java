@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Scanner;
 
 import com.util.Console;
 
@@ -13,6 +14,8 @@ import db.PetDB;
 import interfaces.DAO;
 
 public class PetStoreConsole {
+
+	private static final String PET_NOT_FOUND = "No record found for id: ";
 
 	public static void main(String[] args) {
 
@@ -26,9 +29,9 @@ public class PetStoreConsole {
 		int command = 0;
 		while (command != 99) {
 			displayMenu();
-			command = Console.getInt("Command: ");
+			
 			System.out.println();
-
+			command = Console.getInt("Command: ");
 			switch (command) {
 			case 1:
 				System.out.println("**Complete list of Pets**");
@@ -43,20 +46,20 @@ public class PetStoreConsole {
 				int id = Console.getInt("Pet ID: ");
 				Pet pet = petsDb.get(id);
 				if (pet != null) {
-					System.out.println("Pet found!" + "\n"+ pet);
-					
+					System.out.println("Pet found!" + "\n" + pet);
+
 				} else
 					System.out.println("Pet not found. Try Again.");
 				break;
-				
-				case 3:
-					System.out.println("**Pet retrieved by gender**");
-					System.out.println("---------------------------");
-					String gender = Console.getString("Gender desired (m/f): ", "m","f");
-					for (Pet pets : petsDb.get(gender)) {
-						System.out.println(pets);
-					}
-					break;
+
+			case 3:
+				System.out.println("**Pet retrieved by gender**");
+				System.out.println("---------------------------");
+				String gender = Console.getString("Gender desired (m/f): ", "m", "f");
+				for (Pet pets : petsDb.get(gender)) {
+					System.out.println(pets);
+				}
+				break;
 			case 4:
 				System.out.println("****Add a pet****");
 				System.out.println("-----------------");
@@ -68,8 +71,7 @@ public class PetStoreConsole {
 				gender = Console.getString("Gender (m/f): ");
 				String disposition = Console.getLine("Pet disposition: ");
 				boolean available = Console.getBoolean("Available (y/n): ");
-				if (petsDb.add(new Pet(type, breed, name, birthDate, gender, disposition, 
-						available))) {
+				if (petsDb.add(new Pet(type, breed, name, birthDate, gender, disposition, available))) {
 					System.out.println("Pet added!");
 				} else {
 					System.out.println("Error adding Pet record. Please try again.");
@@ -79,58 +81,61 @@ public class PetStoreConsole {
 				System.out.println("Update pet record");
 				System.out.println("-----------------");
 				id = Console.getInt("ID: ");
+
 				System.out.println();
 				pet = petsDb.get(id);
-							
-				command = 0;
-				while (command !=10) {
-					updatePetMenu();
-					command = Console.getInt("Command: ");
-					System.out.println();
-					
 				if (pet != null) {
-					switch (command) {
-					case 1:
-						String newType = Console.getLine("New type: ");
-						pet.setType(newType);
-						break;
-					case 2:
-						String newBreed = Console.getLine("New breed: ");
-						pet.setBreed(newBreed);
-						break;
-					case 3: 
-						String newName = Console.getLine("New pet name: ");
-						pet.setName(newName);
-						break;
-					case 4:
-						birthDateStr = Console.getLine("Birth Date (YYYY-MM-DD): ");
-						birthDate = LocalDate.parse(birthDateStr);
-						pet.setBirthDate(birthDate);
-						break;
-					case 5: 
-						String newGender = Console.getString("New gender: ");
-						pet.setGender(newGender);
-						break;
-					case 6:
-						String newDisposition = Console.getLine("New disposition: ");
-						pet.setDisposition(newDisposition);
-						break;
-					case 7:
-						boolean newAvailable = Console.getBoolean("New availability (y/n): ");
-						pet.setAvailable(newAvailable);
-						break;
-					case 10: 
-						break;
+
+					command = 0;
+					while (command != 10) {
+						updatePetMenu();
+						command = Console.getInt("Command: ");
+						System.out.println();
+
+						if (pet != null) {
+							switch (command) {
+							case 1:
+								String newType = Console.getLine("New type: ");
+								pet.setType(newType);
+								break;
+							case 2:
+								String newBreed = Console.getLine("New breed: ");
+								pet.setBreed(newBreed);
+								break;
+							case 3:
+								String newName = Console.getLine("New pet name: ");
+								pet.setName(newName);
+								break;
+							case 4:
+								birthDateStr = Console.getLine("Birth Date (YYYY-MM-DD): ");
+								birthDate = LocalDate.parse(birthDateStr);
+								pet.setBirthDate(birthDate);
+								break;
+							case 5:
+								String newGender = Console.getString("New gender: ");
+								pet.setGender(newGender);
+								break;
+							case 6:
+								String newDisposition = Console.getLine("New disposition: ");
+								pet.setDisposition(newDisposition);
+								break;
+							case 7:
+								boolean newAvailable = Console.getBoolean("New availability (y/n): ");
+								pet.setAvailable(newAvailable);
+								break;
+							case 10:
+								break;
+							}
+							petsDb.update(pet);
+							System.out.println("Pet information updated!");
 					}
-					petsDb.update(pet);
-					System.out.println("Pet information has been updated! \n");
-					
-				}
-				else {
-					System.out.println("Pet requested was unable to be found. Try again.");
-				} 
+					}	
+				
+				} else {
+					System.out.println(PET_NOT_FOUND + id+"\n");
 			}break;
-			
+				
+
 			case 6:
 				System.out.println("**Delete a pet by ID**");
 				System.out.println("----------------------");
@@ -140,15 +145,15 @@ public class PetStoreConsole {
 					petsDb.delete(pet);
 					System.out.println("Pet Deleted! \n" + pet);
 				} else {
-					System.out.println("Unable to delete pet!");
+					System.out.println("Invalid Pet Id!");
 				}
 				break;
 			case 99:
 				break;
 			}
 		}
-	System.out.println("Good Bye!!! Thank you for using the Pet Store Console!");
-}
+		System.out.println("Good Bye!!! Thank you for using the Pet Store Console!");
+	}
 
 	private static void displayMenu() {
 		System.out.println("****Main Command Menu****");
@@ -162,7 +167,7 @@ public class PetStoreConsole {
 		System.out.println("99 - Exit Menu");
 		System.out.println();
 	}
-	
+
 	private static void updatePetMenu() {
 		System.out.println("****Update Pet Menu****");
 		System.out.println("=======================");
@@ -175,5 +180,20 @@ public class PetStoreConsole {
 		System.out.println("7 - Update Availibility");
 		System.out.println("10 - Exit Update Menu");
 		System.out.println();
+	}
+	public static int getInt(Scanner sc, String prompt) {
+	    int i = 0;
+	    boolean isValid = false;
+	    while (!isValid) {
+	        System.out.print(prompt);
+	        if (sc.hasNextInt()) {
+	            i = sc.nextInt();
+	            isValid = true;
+	        } else {
+	            System.out.println("Error! Invalid integer. Try again.");
+	        }
+	        sc.nextLine();  // discard any other data entered on the line
+	    }
+	    return i;
 	}
 }

@@ -31,7 +31,7 @@ public class PetDB extends BaseDB implements DAO<Pet> {
 		}
 		return pet;
 	}
-	
+
 	public List<Pet> get(String gender) {
 		List<Pet> pets = new ArrayList<>();
 		String sql = "Select * from Pet where gender = ?";
@@ -48,6 +48,7 @@ public class PetDB extends BaseDB implements DAO<Pet> {
 		}
 		return pets;
 	}
+
 	@Override
 	public List<Pet> getAll() {
 		List<Pet> pets = new ArrayList<>();
@@ -70,8 +71,7 @@ public class PetDB extends BaseDB implements DAO<Pet> {
 		boolean success = false;
 		String sql = "insert into pet (type, breed, name, birthDate, gender,"
 				+ " disposition, available) values (?, ?, ?, ?, ?, ?, ?)";
-		try 
-			(PreparedStatement stmt = getConnection().prepareStatement(sql)){
+		try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
 			stmt.setString(1, pet.getType());
 			stmt.setString(2, pet.getBreed());
 			stmt.setString(3, pet.getName());
@@ -92,15 +92,8 @@ public class PetDB extends BaseDB implements DAO<Pet> {
 	@Override
 	public boolean update(Pet pet) {
 		boolean success = false;
-		String sql = "Update Pet set "
-				   + " Type = ?, "
-				   + " Breed = ?, "
-				   + " Name = ?, "
-				   + " BirthDate = ?, "
-				   + " Gender = ?, "
-				   + " Disposition = ?, "
-				   + " Available = ? "
-				   + "Where id = ?";
+		String sql = "Update Pet set " + " Type = ?, " + " Breed = ?, " + " Name = ?, " + " BirthDate = ?, "
+				+ " Gender = ?, " + " Disposition = ?, " + " Available = ? " + "Where id = ?";
 		try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
 			stmt.setString(1, pet.getType());
 			stmt.setString(2, pet.getBreed());
@@ -117,20 +110,19 @@ public class PetDB extends BaseDB implements DAO<Pet> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	return success;
+		return success;
 	}
-	
+
 	@Override
 	public boolean delete(Pet pet) {
 		boolean success = false;
 		String sql = "delete from Pet where id = ?";
-		try 
-			(PreparedStatement stmt = getConnection().prepareStatement(sql)){
+		try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
 			stmt.setInt(1, pet.getId());
 			int rowsAffected = stmt.executeUpdate();
 			if (rowsAffected == 1) {
 				System.out.println("Pet deleted!");
-			}else {
+			} else {
 				System.out.println("Error deleting pet. Try again.");
 			}
 		} catch (SQLException e) {

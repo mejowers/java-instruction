@@ -10,8 +10,7 @@ public class GuessingGameApp {
 		Scanner sc = new Scanner(System.in);
 
 		final int LIMIT = 100;
-
-		
+	
 		// start game
 		
 		String choice = "y";
