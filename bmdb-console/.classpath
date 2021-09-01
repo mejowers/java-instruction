@@ -8,5 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/dist/console-helper.jar"/>
 	<classpathentry kind="lib" path="C:/dist/mysql-connector-java-8.0.24.jar"/>
+	<classpathentry kind="lib" path="C:/dist/mysql-connector-java-8.0.26.jar"/>
+	<classpathentry kind="src" path="/console-helper"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

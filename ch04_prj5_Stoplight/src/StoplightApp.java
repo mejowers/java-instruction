@@ -35,23 +35,17 @@ public class StoplightApp {
 				System.out.println("Stop!");}
 			
 				
-			else System.out.println("Proceed!");
+			else { System.out.println("Proceed!");
 			}
 			
-			
-		}
 				
-	System.out.println();
-	System.out.print("Continue? (y/n): ");
+	System.out.print("Again (y/n)?");
 	choice = sc.next();
 	System.out.println();
-
-
-
-System.out.println();
-sc.close();
-System.out.println("Good Bye");
-
+	
 }
-
+	sc.close();
+	System.out.println("Good Bye!");
+	
+}
 }
